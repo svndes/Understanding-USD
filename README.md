@@ -1,4 +1,4 @@
-This repository is all about my work with Universal Scene Description (USD). You can find useful documents and sample assets pertaining to USD here.
+This repository is all about my work with Universal Scene Description (USD). You can find useful documents and sample assets.
 
 USD is a special format that helps describe 3D scenes and organize all the different parts, like objects, lights, and cameras. It makes the sharing and management of 3D content easier and is used in a variety of industries, including gaming and film.
 
