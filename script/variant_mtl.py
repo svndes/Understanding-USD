@@ -1,1 +1,0 @@
-print("variant_mtl")
