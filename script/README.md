@@ -1,0 +1,1 @@
+This folder contains Python scripts that help to work with USD. They show how to create and manage 3D scenes. I’ll add more scripts as I continue to learn about USD.
