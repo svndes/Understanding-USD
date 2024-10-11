@@ -1,0 +1,12 @@
+#usda 1.0
+(
+    defaultPrim = "chair"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    subLayers = [
+        @./chair.usda@
+    ]
+    timeCodesPerSecond = 24
+    upAxis = "Y"
+)
+
