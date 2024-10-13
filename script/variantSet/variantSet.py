@@ -1,15 +1,16 @@
 from pxr import Usd, UsdGeom, Kind
 
-# file extensions, path for USD files
+# name, path, ext for USD files
+filename = 'asdasd'
 usdExt = '.usda'
 basePath = 'yourpath/variantSet/asset/'
-geoUsdaPath = f'{basePath}geo{usdExt}'
 
 # list of asset names
 usdObj = ["Capsule", "Cone", "Cube", "Cylinder"]
 
 # open an existing USD file or create a new one
-def createOrOpenStage(path):
+def createOrOpenStage(name):
+    path = f'{basePath}{filename}{usdExt}'
     try:
         stage = Usd.Stage.Open(path)
         if not stage:
@@ -41,7 +42,7 @@ if not variantSet:
 # loop each asset, add it as a variant, and link to the USD file
 for obj in usdObj:
     variantName = obj
-    usdFilePath = f'{basePath}/{obj}{usdExt}'
+    usdFilePath = f'{basePath}{obj}{usdExt}'
     variantSet.AddVariant(variantName)
     variantSet.SetVariantSelection(variantName)
     with variantSet.GetVariantEditContext():
@@ -51,5 +52,4 @@ for obj in usdObj:
 
 # save USD file
 stage.GetRootLayer().Save()
-
 print(f"{geoUsdaPath}")
