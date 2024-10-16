@@ -55,6 +55,7 @@ class CustomUI(QtWidgets.QDialog):
         defineArrayMeshButton.clicked.connect(self.defineArrayMesh)
 
     def createBifrostGraph(self):
+        self.attrText.clear()
         # Prompt the user for the Bifrost graph name
         bifrostGraphName, ok = QtWidgets.QInputDialog.getText(self, "Bifrost Graph Name",
                                                               "Enter name for Bifrost Graph:")
@@ -65,6 +66,30 @@ class CustomUI(QtWidgets.QDialog):
             parent = pm.listRelatives(myBifrostGraph, fullPath=False, parent=True)[0]
             parent.rename(bifrostGraphName)
             pm.select(clear=True)
+
+            add_to_stage = pm.vnnCompound(myBifrostGraph, "/", addNode="BifrostGraph,USD::Stage,add_to_stage")[0]
+            output = pm.vnnCompound(myBifrostGraph, "/", addIONode=False)[0]
+            pm.vnnNode(myBifrostGraph, f"/{output}", createInputPort=("out_stage", "BifrostUsd::Stage"))
+            pm.vnnConnect(myBifrostGraph, f"/{add_to_stage}.out_stage", ".out_stage")
+
+            define_usd_prim = pm.vnnCompound(myBifrostGraph, "/", addNode="BifrostGraph,USD::Prim,define_usd_prim")[0]
+            pm.vnnNode(myBifrostGraph, f"/{add_to_stage}", createInputPort=("prim_definitions.prim_definition", "auto"))
+            pm.vnnConnect(myBifrostGraph, f"/{define_usd_prim}.prim_definition",
+                          f"/{add_to_stage}.prim_definitions.prim_definition")
+
+            pm.vnnNode(myBifrostGraph, f"/{define_usd_prim}", setPortDefaultValues=("path", f"/{bifrostGraphName}"))
+            pm.vnnNode(myBifrostGraph, f"/{define_usd_prim}", setPortDefaultValues=("kind", "3"))
+
+            define_usd_prim_geo = pm.vnnCompound(myBifrostGraph, "/", addNode="BifrostGraph,USD::Prim,define_usd_prim")[
+                0]
+            pm.vnnNode(myBifrostGraph, f"/{define_usd_prim_geo}", setPortDefaultValues=("path", f"/geo"))
+
+            pm.vnnNode(myBifrostGraph, f"/{define_usd_prim}", createInputPort=("children.prim_definition", "auto"))
+            pm.vnnConnect(myBifrostGraph, f"/{define_usd_prim_geo}.prim_definition",
+                          f"/{define_usd_prim}.children.prim_definition")
+            print(' ')
+            print(' ')
+            self.attrText.append(myBifrostGraph.name())  # Add each node name to the QTextEdit
 
     def addToList(self):
         self.attrText.clear()
@@ -173,12 +198,12 @@ class CustomUI(QtWidgets.QDialog):
             if ok and objName:
                 setColor = self.open_color_picker()
                 if setColor:
-                    #print(setColor)
+                    # print(setColor)
                     mesh = ' '.join(meshFullpath)
                     input = pm.vnnCompound(bifrostGraphShape, "/", addIONode=True)[0]
                     # Create the bi-graph node and its output port
                     pm.vnnNode(bifrostGraphShape, f"/{input}", createOutputPort=(objName, "array<Object>"),
-                                 portOptions="pathinfo={path=" + mesh + '};setOperation=+;active=true}')
+                               portOptions="pathinfo={path=" + mesh + '};setOperation=+;active=true}')
                     forEachMesh_node = self.forEachMesh(bifrostGraphShape)
                     pm.vnnNode(bifrostGraphShape, f"/{forEachMesh_node}", setPortDefaultValues=("name", objName))
                     pm.vnnConnect(bifrostGraphShape, f".{objName}", f"/{forEachMesh_node}.mesh")
