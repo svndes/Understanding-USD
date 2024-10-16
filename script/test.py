@@ -220,3 +220,78 @@ except:
 
 custom_ui = CustomUI()
 custom_ui.show()
+
+
+
+
+
+
+
+"""
+
+
+import maya.cmds as cmds
+
+# Select the object(s) to export
+# Example: cmds.select('desk_mesh')  # Replace with your actual mesh names
+
+# Export to USD file with textures, colors, and other attributes
+cmds.mayaUSDExport(
+    file=r'D:\maya\USD\classroom\assets\globe\globe_.usda',         # Specify the export path
+    exportUVs=True,              # Export UVs
+    exportVisibility=True,       # Export visibility attributes
+    exportBlendShapes=True,      # Export blend shapes (if any)
+    exportDisplayColor=True,     # Export display colors
+    shadingMode='useRegistry',   # Export shading network and textures
+    convertMaterialsTo='UsdPreviewSurface',  # Convert materials to USD Preview Surface
+    selection=True,              # Export only selected objects
+    geomSidedness='double',      # Set geometry to double-sided
+    exportRelativeTextures='relative'  # Export texture paths as relative
+)
+
+print("Export completed successfully with textures.")
+
+
+
+
+
+
+import maya.cmds as cmds
+
+# Select the object(s) whose materials you want to export
+# Example: cmds.select('desk_mesh')  # Replace with your actual mesh names
+
+# Export only the material information to a USD file
+cmds.mayaUSDExport(
+    file=r'D:\maya\USD\classroom\assets\globe\globe_materials.usda',  # Specify the export path
+    shadingMode='useRegistry',              # Export shading network and textures
+    convertMaterialsTo='UsdPreviewSurface', # Convert materials to USD Preview Surface
+    exportUVs=False,                        # Do not export UVs
+    exportVisibility=False,                 # Do not export visibility attributes
+    exportBlendShapes=False,                # Do not export blend shapes
+    selection=True                          # Export only materials from the selected objects
+)
+
+print("Export completed successfully with only material data.")
+
+
+
+
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
