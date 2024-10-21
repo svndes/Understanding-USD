@@ -1,0 +1,37 @@
+#usda 1.0
+(
+    defaultPrim = "book"
+    metersPerUnit = 0.01
+    upAxis = "Y"
+)
+
+def Xform "book" (
+    kind = "group"
+    prepend references = [
+        @./book_mtl.usda@</book>,
+        @./book_geo.usda@</book>
+    ]
+    variants = {
+        string modelVariant = "book"
+        string shaderVariant = "black"
+    }
+)
+{
+    over "geo"
+    {
+        over "book_2_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </book/mtl/previewMaterial1>
+        }
+
+        over "book_1_geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </book/mtl/previewMaterial2>
+        }
+    }
+}
+
