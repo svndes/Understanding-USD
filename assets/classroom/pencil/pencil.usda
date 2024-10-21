@@ -1,0 +1,12 @@
+#usda 1.0
+(
+    defaultPrim = "pencil"
+    upAxis = "Y"
+)
+
+def Xform "pencil" (
+    kind = "group"
+    prepend references = @./pencil_geo.usda@</pencil>
+)
+{
+}

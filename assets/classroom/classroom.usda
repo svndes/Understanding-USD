@@ -1,0 +1,209 @@
+#usda 1.0
+(
+    defaultPrim = "classroom"
+    metersPerUnit = 0.01
+    upAxis = "Y"
+)
+
+def Xform "classroom" (
+    kind = "group"
+)
+{
+    reorder nameChildren = ["book", "pencil", "desk", "chair", "bag", "globe"]
+    def Xform "desk" (
+        prepend references = @d:/maya/USD/classroom/assets/classroom/desk/desk.usda@</desk>
+    )
+    {
+        double3 xformOp:translate = (0, 0, 10.37225012723765)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "chair" (
+        prepend references = @d:/maya/USD/classroom/assets/classroom/chair/chair.usda@</chair>
+    )
+    {
+        float3 xformOp:rotateXYZ = (0, 185.07129, 0)
+        double3 xformOp:translate = (-2.0277120643657245, 0, -20.289628856380006)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+    }
+
+    def Xform "book"
+    {
+        def Xform "book1" (
+            prepend references = @d:/maya/USD/classroom/assets/classroom/book/book.usda@</book>
+            variants = {
+                string modelVariant = "notebook"
+            }
+        )
+        {
+            float3 xformOp:rotateXYZ = (0, -165.66415, 0)
+            float3 xformOp:scale = (0.9247848, 0.9247848, 0.9247848)
+            double3 xformOp:translate = (7.697136644823532, 86.13875037247719, 2.444199383069412)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:translate:pivot", "xformOp:rotateXYZ", "xformOp:scale", "!invert!xformOp:translate:pivot"]
+        }
+
+        def Xform "book2" (
+            prepend references = @d:/maya/USD/classroom/assets/classroom/book/book.usda@</book>
+            variants = {
+                string modelVariant = "notebook"
+            }
+        )
+        {
+            float3 xformOp:rotateXYZ = (0, -156.63435, 0)
+            float3 xformOp:scale = (0.9247848, 0.9247848, 0.9247848)
+            double3 xformOp:translate = (6.809912205954745, 87.03324598316598, 2.7752038750095593)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:translate:pivot", "xformOp:rotateXYZ", "xformOp:scale", "!invert!xformOp:translate:pivot"]
+        }
+
+        def Xform "book3" (
+            prepend references = @d:/maya/USD/classroom/assets/classroom/book/book.usda@</book>
+            variants = {
+                string modelVariant = "notebook"
+                string shaderVariant = "pink"
+            }
+        )
+        {
+            float3 xformOp:rotateXYZ = (0, -194.89214, 0)
+            float3 xformOp:scale = (0.90633744, 1.2054278, 0.90633744)
+            double3 xformOp:translate = (13.305174295990314, 73.6766034632041, 10.085342475621623)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:translate:pivot", "xformOp:rotateXYZ", "xformOp:scale", "!invert!xformOp:translate:pivot"]
+
+            over "mtl"
+            {
+                over "previewMaterial1"
+                {
+                    token outputs:surface
+
+                    over "uvTexture"
+                    {
+                    }
+
+                    over "stReader"
+                    {
+                    }
+                }
+            }
+        }
+
+        def Xform "book4" (
+            prepend references = @d:/maya/USD/classroom/assets/classroom/book/book.usda@</book>
+            variants = {
+                string modelVariant = "notebook"
+                string shaderVariant = "green"
+            }
+        )
+        {
+            float3 xformOp:rotateXYZ = (0, -185.86234, 0)
+            float3 xformOp:scale = (0.90633744, 1.2054278, 0.90633744)
+            double3 xformOp:translate = (12.662598666756491, 74.81020651526752, 10.579984271881967)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:translate:pivot", "xformOp:rotateXYZ", "xformOp:scale", "!invert!xformOp:translate:pivot"]
+        }
+
+        def Xform "book5" (
+            prepend references = @d:/maya/USD/classroom/assets/classroom/book/book.usda@</book>
+            variants = {
+                string modelVariant = "book"
+                string shaderVariant = "black"
+            }
+        )
+        {
+            float3 xformOp:rotateXYZ = (0, -319.58612, 0)
+            float3 xformOp:scale = (0.9247848, 1.7926284, 0.9247848)
+            double3 xformOp:translate = (-7.383500889716214, 73.6766034632041, 8.831549029131693)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:translate:pivot", "xformOp:rotateXYZ", "xformOp:scale", "!invert!xformOp:translate:pivot"]
+
+            over "mtl"
+            {
+                over "previewMaterial1"
+                {
+                    token outputs:surface
+
+                    over "uvTexture"
+                    {
+                    }
+
+                    over "stReader"
+                    {
+                    }
+                }
+            }
+        }
+
+        def Xform "book6" (
+            prepend references = @d:/maya/USD/classroom/assets/classroom/book/book.usda@</book>
+            variants = {
+                string modelVariant = "book"
+                string shaderVariant = "blue"
+            }
+        )
+        {
+            float3 xformOp:rotateXYZ = (0, -541.3813, 0)
+            float3 xformOp:scale = (0.9247848, 0.9247848, 0.9247848)
+            double3 xformOp:translate = (-20.31100993576299, 86.11584913347777, 8.054788828940039)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:translate:pivot", "xformOp:rotateXYZ", "xformOp:scale", "!invert!xformOp:translate:pivot"]
+
+            over "mtl"
+            {
+                over "previewMaterial1"
+                {
+                    token outputs:surface
+
+                    over "uvTexture"
+                    {
+                    }
+
+                    over "stReader"
+                    {
+                    }
+                }
+            }
+        }
+    }
+
+    def Xform "pencil"
+    {
+        def Xform "pencil1" (
+            prepend references = @d:/maya/USD/classroom/assets/classroom/pencil/pencil.usda@</pencil>
+        )
+        {
+            float3 xformOp:rotateXYZ = (0, 31.192034, 0)
+            double3 xformOp:translate = (21.440672949686526, 86.51709583396675, -5.1291782380481745)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Xform "pencil2" (
+            prepend references = @d:/maya/USD/classroom/assets/classroom/pencil/pencil.usda@</pencil>
+        )
+        {
+            float3 xformOp:rotateXYZ = (0, 181.42026, 0)
+            double3 xformOp:translate = (-27.866633324098736, 86.51709583396675, 8.855965805973879)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+    }
+
+    def Xform "bag" (
+        prepend references = @d:/maya/USD/classroom/assets/classroom/bag/bag.usda@</bag>
+    )
+    {
+        float3 xformOp:rotateXYZ = (0, -84.62955, 0)
+        double3 xformOp:translate = (-38.94288425791358, 0, 22.386465787014856)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+    }
+
+    def Xform "globe" (
+        prepend references = @d:/maya/USD/classroom/assets/classroom/globe/globe.usda@</globe>
+    )
+    {
+        float3 xformOp:rotateXYZ = (0, -21.35906, 0)
+        double3 xformOp:translate = (25.42169489630777, 86.09626668340618, 22.194089222907532)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+
+        over "geo" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </classroom/globe/mtl/globe_usdPSSG>
+        }
+    }
+}
+

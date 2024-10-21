@@ -1,0 +1,14 @@
+#usda 1.0
+(
+    defaultPrim = "desk"
+    metersPerUnit = 0.01
+    upAxis = "Y"
+)
+
+def Xform "desk" (
+    kind = "group"
+    prepend references = @./desk_geo.usda@</desk>
+)
+{
+}
+

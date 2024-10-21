@@ -1,0 +1,50 @@
+#usda 1.0
+(
+    defaultPrim = "globe"
+    metersPerUnit = 0.01
+    upAxis = "Y"
+)
+
+def Xform "globe" (
+    kind = "component"
+)
+{
+    def Scope "mtl"
+    {
+        def Material "globe_usdPSSG"
+        {
+            string inputs:file5:varname = "st"
+            token outputs:surface.connect = </globe/mtl/globe_usdPSSG/globe_usdPS.outputs:surface>
+
+            def Shader "globe_usdPS"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor.connect = </globe/mtl/globe_usdPSSG/file5.outputs:rgb>
+                token outputs:displacement
+                token outputs:surface
+            }
+
+            def Shader "file5"
+            {
+                uniform token info:id = "UsdUVTexture"
+                float4 inputs:fallback = (0.5, 0.5, 0.5, 1)
+                asset inputs:file = @texture/texture.png@ (
+                    colorSpace = "sRGB"
+                )
+                token inputs:sourceColorSpace = "sRGB"
+                float2 inputs:st.connect = </globe/mtl/globe_usdPSSG/place2dTexture.outputs:result>
+                token inputs:wrapS = "repeat"
+                token inputs:wrapT = "repeat"
+                float3 outputs:rgb
+            }
+
+            def Shader "place2dTexture"
+            {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                string inputs:varname.connect = </globe/mtl/globe_usdPSSG.inputs:file5:varname>
+                float2 outputs:result
+            }
+        }
+    }
+}
+

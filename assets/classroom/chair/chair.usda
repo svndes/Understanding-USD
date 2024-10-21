@@ -1,0 +1,12 @@
+#usda 1.0
+(
+    defaultPrim = "chair"
+    upAxis = "Y"
+)
+
+def Xform "chair" (
+    kind = "group"
+    prepend references = @./chair_geo.usda@</chair>
+)
+{
+}

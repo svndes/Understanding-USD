@@ -1,0 +1,12 @@
+#usda 1.0
+(
+    defaultPrim = "bag"
+    upAxis = "Y"
+)
+
+def Xform "bag" (
+    kind = "group"
+    prepend references = @./bag_geo.usda@</bag>
+)
+{
+}
