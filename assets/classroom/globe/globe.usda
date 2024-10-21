@@ -7,8 +7,8 @@
 def Xform "globe" (
     kind = "group"
     prepend references = [
-        @d:/maya/USD/classroom/assets/classroom/globe/globe_mtl.usda@</globe>,
-        @d:/maya/USD/classroom/assets/classroom/globe/globe_geo.usda@</globe>
+        @./globe_mtl.usda@</globe>,
+        @./globe_geo.usda@</globe>
     ]
 )
 {
