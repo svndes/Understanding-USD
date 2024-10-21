@@ -6,7 +6,7 @@
 )
 
 def Xform "classroom" (
-    kind = "group"
+    kind = "assembly"
 )
 {
     reorder nameChildren = ["book", "pencil", "desk", "chair", "bag", "globe"]
@@ -138,7 +138,7 @@ def Xform "classroom" (
         )
         {
             float3 xformOp:rotateXYZ = (0, -541.3813, 0)
-            float3 xformOp:scale = (0.9247848, 0.9247848, 0.9247848)
+            float3 xformOp:scale = (0.9247848, 0.9247848, 0.87478477)
             double3 xformOp:translate = (-20.31100993576299, 86.11584913347777, 8.054788828940039)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:translate:pivot", "xformOp:rotateXYZ", "xformOp:scale", "!invert!xformOp:translate:pivot"]
 
